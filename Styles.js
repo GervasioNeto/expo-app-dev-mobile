@@ -6,6 +6,12 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#e1d4ff",
     padding: 1,
+    alignItems: "center",
+  },
+  container_infos: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   paragraph: {
     color: "#690b6e",
@@ -39,6 +45,32 @@ export const styles = StyleSheet.create({
   socials: {
     flex: 1,
     justifyContent: "center",
+  },
+  container_redes: {
+    flex: 0.5,
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  texto_apresentacao: {
+    color: "purple",
+    fontWeight: "bold",
+    fontSize: 15,
+  },
+  texto: {
+    color: "purple",
+    fontWeight: "bold",
+  },
+  texto_instituicao: {
+    color: "blue",
+    textDecorationLine: "underline",
+  },
+  imagem: {
+    width: 150,
+    height: 150,
+    resizeMode: "cover",
+    borderRadius: 300,
+    borderWidth: 3,
+    borderColor: "purple",
   },
 });
 

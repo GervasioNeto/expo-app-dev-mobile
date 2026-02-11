@@ -19,7 +19,10 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View>
-        <Image source={require("./assets/snack-icon.png")} />
+        <Image
+          style={styles.imagem}
+          source={require("./assets/snack-icon.png")}
+        />
       </View>
       <View>
         <Text style={styles.paragraph}>Apresentação</Text>
@@ -32,9 +35,18 @@ export default function App() {
         <Text style={styles.campoContent}>
           <Text style={styles.campoMain}>Profissão: </Text> Desenvolvedor Web
         </Text>
+        <Text style={styles.campoContent}>
+          <Text style={styles.campoMain}>Instituição: </Text>
+          <Text
+            style={styles.texto_instituicao}
+            onPress={() => Linking.openURL("https://www.unifor.br")}
+          >
+            UNIFOR
+          </Text>
+        </Text>
       </View>
 
-      <View>
+      <View style={styles.container_redes}>
         <TouchableOpacity
           onPress={() =>
             Linking.openURL("https://www.linkedin.com/in/gervasioneto/")
