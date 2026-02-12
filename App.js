@@ -52,12 +52,20 @@ export default function App() {
             Linking.openURL("https://www.linkedin.com/in/gervasioneto/")
           }
         >
-          <MaterialCommunityIcons name="linkedin" size={50} color="#0e76a8" />
+          <MaterialCommunityIcons name="linkedin" size={55} color="#0e76a8" />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => Linking.openURL("https://github.com/gervasioneto")}
         >
-          <MaterialCommunityIcons name="github" size={50} color="" />
+          <MaterialCommunityIcons name="github" size={55} color="" />
+        </TouchableOpacity>
+      </View>
+      <View>
+        <TouchableOpacity
+          style={styles.botao}
+          onPress={() => alert("Botão pressionado!")}
+        >
+          <Text style={styles.texto_botao}>Contato </Text>
         </TouchableOpacity>
       </View>
     </View>

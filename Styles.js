@@ -19,6 +19,7 @@ export const styles = StyleSheet.create({
     margin: 5,
     fontSize: 26,
     textAlign: "center",
+    marginTop: 20,
   },
   nome: {
     color: "#690b6e",
@@ -50,6 +51,7 @@ export const styles = StyleSheet.create({
     flex: 0.5,
     flexDirection: "row",
     justifyContent: "center",
+    marginTop: 10,
   },
   texto_apresentacao: {
     color: "purple",
@@ -65,13 +67,28 @@ export const styles = StyleSheet.create({
     textDecorationLine: "underline",
   },
   imagem: {
-    width: 150,
-    height: 150,
+    width: 180,
+    height: 180,
     resizeMode: "cover",
     borderRadius: 300,
-    borderWidth: 3,
+    borderWidth: 4,
     borderColor: "purple",
+  },
+  botao: {
+    backgroundColor: "purple",
+    width: 180,
+    height: 60,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 10,
+  },
+  texto_botao: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
   },
 });
 
 // export default styles;
+
+//expo cli
