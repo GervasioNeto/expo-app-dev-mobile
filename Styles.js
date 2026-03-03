@@ -76,8 +76,17 @@ export const styles = StyleSheet.create({
   },
   botao: {
     backgroundColor: "purple",
-    width: 180,
-    height: 60,
+    width: 130,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 10,
+    marginTop: 5,
+  },
+  botao_lista_contatos: {
+    backgroundColor: "purple",
+    width: 130,
+    height: 30,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 10,
@@ -87,6 +96,13 @@ export const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     fontWeight: "bold",
+  },
+  texto_botao_contato: {
+    color: "white",
+    fontSize: 12,
+    fontWeight: "bold",
+    alignItems: "center",
+    justifyContent: "center",
   },
   container_contato: {
     flex: 1,
@@ -200,7 +216,6 @@ export const styles = StyleSheet.create({
     shadowRadius: 1.5,
   },
 
-  // Card branco com conteúdo
   infoCard: {
     width: "92%",
     backgroundColor: "#fff",
@@ -273,7 +288,3 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
   },
 });
-
-// export default styles;
-
-//expo cli

@@ -6,18 +6,52 @@ import {
   Button,
   ScrollView,
   TouchableOpacity,
+  ToastAndroid,
+  Alert,
 } from "react-native";
 import { MaterialCommunityIcons } from "react-native-vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styles } from "./Styles";
 function TelaContato({ navigation }) {
   const [text_nome, setText_nome] = useState("");
   const [text_email, setText_email] = useState("");
   const [message, setMessage] = useState("");
 
+  const salvarContato = async () => {
+    try {
+      const contato = {
+        id: Date.now(),
+        nome: text_nome,
+        email: text_email,
+        mensagem: message,
+      };
+      // await AsyncStorage.setItem("@contato", JSON.stringify(contato));
+      // Alert.alert("Sucesso", "Mensagem salva localmente!");
+
+      const contatosSalvos = await AsyncStorage.getItem("@contatos");
+
+      let listaContatos = contatosSalvos ? JSON.parse(contatosSalvos) : [];
+
+      listaContatos.push(contato);
+
+      await AsyncStorage.setItem("@contatos", JSON.stringify(listaContatos));
+
+      Alert.alert("Sucesso", "Contato salvo!");
+
+      console.log("Contato salvo:", JSON.stringify(contato));
+      setText_nome("");
+      setText_email("");
+      setMessage("");
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possível salvar os dados");
+      console.error(error);
+    }
+  };
+
   return (
     <View style={styles.container_contato}>
       <View style={styles.container_icone_voltar_contato}>
-        <TouchableOpacity onPress={() => alert("Ação voltar!")}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <MaterialCommunityIcons
             name="keyboard-backspace"
             size={40}
@@ -56,12 +90,7 @@ function TelaContato({ navigation }) {
         />
       </ScrollView>
       <View>
-        <Button
-          title="Enviar"
-          onPress={() => {
-            alert("Mensagem Enviada!");
-          }}
-        />
+        <Button title="Enviar" onPress={salvarContato} />
       </View>
     </View>
   );

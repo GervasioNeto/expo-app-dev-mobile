@@ -73,6 +73,12 @@ export default function TelaInfo({ navigation }) {
         >
           <Text style={styles.texto_botao}>Perfil</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.botao_lista_contatos}
+          onPress={() => navigation.navigate("ListaContatos")}
+        >
+          <Text style={styles.texto_botao_contato}>Lista</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

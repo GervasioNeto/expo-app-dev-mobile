@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import TelaInfo from "./TelaInfo";
 import TelaContato from "./TelaContato";
 import TelaPerfil from "./TelaPerfil";
+import TelaListaContatos from "./TelaListaContatos";
 // Criação do Stack Navigator
 const Stack = createStackNavigator();
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
         <Stack.Screen name="Home" component={TelaInfo} />
         <Stack.Screen name="Contato" component={TelaContato} />
         <Stack.Screen name="Perfil" component={TelaPerfil} />
+        <Stack.Screen name="ListaContatos" component={TelaListaContatos} />
       </Stack.Navigator>
     </NavigationContainer>
   );
