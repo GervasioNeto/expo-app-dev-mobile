@@ -12,39 +12,47 @@ import {
 import { MaterialCommunityIcons } from "react-native-vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styles } from "./Styles";
+import { db } from "./firebaseConfig";
+import { collection, addDoc } from "firebase/firestore";
+
 function TelaContato({ navigation }) {
   const [text_nome, setText_nome] = useState("");
   const [text_email, setText_email] = useState("");
   const [message, setMessage] = useState("");
 
   const salvarContato = async () => {
-    try {
-      const contato = {
-        id: Date.now(),
-        nome: text_nome,
-        email: text_email,
-        mensagem: message,
-      };
-      // await AsyncStorage.setItem("@contato", JSON.stringify(contato));
-      // Alert.alert("Sucesso", "Mensagem salva localmente!");
+    if (text_nome && text_email && message) {
+      try {
+        const novaMensagem = {
+          nome: text_nome,
+          email: text_email,
+          mensagem: message,
+          data: new Date().toISOString(),
+        };
 
-      const contatosSalvos = await AsyncStorage.getItem("@contatos");
+        console.log("Tentando enviar para Firestore:", db);
 
-      let listaContatos = contatosSalvos ? JSON.parse(contatosSalvos) : [];
+        // collection(banco, 'nome_da_colecao')
+        const docRef = await addDoc(collection(db, "mensagens"), novaMensagem);
 
-      listaContatos.push(contato);
+        console.log("Documento escrito com ID: ", docRef.id);
 
-      await AsyncStorage.setItem("@contatos", JSON.stringify(listaContatos));
+        //Salvando no AsyncStorage também
+        const contatosSalvos = await AsyncStorage.getItem("@contatos");
+        let listaContatos = contatosSalvos ? JSON.parse(contatosSalvos) : [];
+        listaContatos.push({ id: docRef.id, ...novaMensagem }); // Usamos o ID do Firebase
+        await AsyncStorage.setItem("@contatos", JSON.stringify(listaContatos));
 
-      Alert.alert("Sucesso", "Contato salvo!");
-
-      console.log("Contato salvo:", JSON.stringify(contato));
-      setText_nome("");
-      setText_email("");
-      setMessage("");
-    } catch (error) {
-      Alert.alert("Erro", "Não foi possível salvar os dados");
-      console.error(error);
+        Alert.alert("Sucesso", "Mensagem enviada para o Firebase!");
+        setText_nome("");
+        setText_email("");
+        setMessage("");
+      } catch (error) {
+        console.error("Erro detalhado:", error);
+        Alert.alert("Erro ao enviar", error.message);
+      }
+    } else {
+      Alert.alert("Atenção", "Por favor, preencha todos os campos.");
     }
   };
 
